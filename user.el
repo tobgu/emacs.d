@@ -50,3 +50,6 @@
 
 ;; Save here instead of littering current directory with emacs backup files
 (setq backup-directory-alist `(("." . "~/.saves")))
+
+(menu-bar-mode t)
+(set-face-background 'mode-line "#4477aa")
