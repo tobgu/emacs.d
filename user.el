@@ -61,3 +61,6 @@
 
 (menu-bar-mode t)
 (set-face-background 'mode-line "#4477aa")
+
+;; Stop myself from stopping emacs every now and then...
+(global-unset-key (kbd "C-z"))
