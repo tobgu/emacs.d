@@ -64,3 +64,25 @@
 
 ;; Stop myself from stopping emacs every now and then...
 (global-unset-key (kbd "C-z"))
+
+
+(defun go-mode-setup ()
+ (setq compile-command "go build -v && go test -v && go vet")
+ (define-key (current-local-map) "\C-c\C-k" 'compile)
+ (define-key (current-local-map) "\C-c\C-r" #'go-remove-unused-imports)
+ (define-key (current-local-map) "\M-." #'godef-jump)
+
+; (go-eldoc-setup)
+ (setq gofmt-command "goimports")
+ (add-hook 'before-save-hook #'go-remove-unused-imports)
+ (add-hook 'before-save-hook #'gofmt-before-save))
+
+;; Check out the following:
+;; - Go flymake
+;; - Go oracle
+;; - Go doc
+
+; (go-mode-setup)
+(add-hook 'go-mode-hook 'go-mode-setup)
+(require 'auto-complete-config)
+(require 'go-autocomplete)
